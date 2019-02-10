@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="options.css">
+
+    <title>使用帮助</title>
+  </head>
+  
+<body class="bg-light">
+
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/options/setting.html"><img src="/images/icon32.png" alt="" width="32" height="32"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/options/setting.html">划词小窗搜索</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="btn btn-outline-primary my-2 my-sm-0" href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a>
+    </div>
+  </div>
+</nav>
+  
+<div class="container">
+
+    <div class="mb-5 text-center page_mod fade">
+        <h4 class="text-muted">使用帮助</h4>
+    </div>
+    
+</div>
+
+<div class="container">
+
+    <div class="page_mod fade">
+        <div class="card">
+            <div class="card-body p-5">
+            
+                <p class="text-danger">新年好！祝各位 V 友新春如意！</p>
+                <p>一周前我在V站看到 @CivAx 的帖子《<a href="https://www.v2ex.com/t/531800" target="_blank" class="text-muted">有没有什么 Chrome 插件，可以实现划词翻译类似的划词搜索？</a>》，当时正好在研究将百度搜索结果原本是网址现在是名称的地方改回目标网址展示的扩展，觉得 CivAx 的需求是比较简单的，想做一个，为我 V 站帐号聚集点人气。</p>
+                
+                <p>于是第二天就做了本扩展的第一个版本《<a href="https://www.v2ex.com/t/532042" target="_blank" class="text-muted">应 V2EX 老哥请求做了划词右键小窗搜索 Chrome 扩展</a>》，纯粹的划词右键打开小窗 iframe 网页确实是比较简单的，虽然我是面向搜索引擎编程的萌新，但也只花一个来小时就做好了。</p>
+                
+                <p>做之前我想着做完就好了，估计没什么人会用，做好后却发现意外好用，比如我常常不懂读的字需要百度搜索一下拼音，小窗搜索确实比打开新标签页方便太多了。</p>
+                
+                <p>当时就不禁感叹：永远不要低估小众需求的生产力，突破往往藏在众人不以为然的角落里！</p>
+                
+                <p>将第一个版本发布到应用店和 V 站之后，我决定将其改进成一个可以自定义搜索引擎的划词小窗搜索，以方便进行各种独特的划词查询。</p>
+                
+                <p>当时我预计两到三天可以完成这项工作，但我不是专业前端，不懂用什么自动化工具，全部纯手写，最终花了六天，到今天，终于实现了全部预想的功能。</p>
+                
+                <p>常规功能设置我这里就不多说，相信大家看看设置页面就会懂，我这里就介绍一下本扩展和说一下如何添加自定义搜索引擎和搜索引擎接口返回数据格式。</p>
+                
+                <hr class="mt-5">
+                
+                <h2 class="h4 mt-5 mb-3">关于名称</h2>
+                <p>由于新版的划词弹出图标点击搜索，无需右键，所以我决定将名称缩短为 <code>划词小窗搜索</code> ，英文项目名是 <code>hcSearche</code> （英文不好，名字起得比较随意，不过看见知道是这个扩展就行）。</p>
+                
+                <hr class="mt-5">
+                
+                <h2 class="h4 mt-5 mb-3">可以实现的功能</h2>
+                <p>划词搜索本质上划词查询，通过自定义搜索引擎除了可以实现划词搜索以外，还能实现划词翻译、划词查字典、划词搜电影等。</p>
+                
+                <p>当然，自定义搜索引擎需要一定编程能力。本扩展代码会发布到 <a href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a> 上，此外还会逐步提供各种自定义搜索引擎的处理代码，方便大家配置自定义搜索引擎。欢迎反馈和贡献代码。</p>
+
+                <hr class="mt-5">
+                
+                <h2 class="h4 mt-5 mb-3">自定义搜索引擎说明</h2>
+                
+                <p>列表页：</p>
+                
+                <p><b>悬浮搜索图标</b>：决定要不要在划词时显示图标，打开的就会显示，没有打开的不显示。无论有没有打开，所有搜索引擎都会在打开的搜索小窗头部显示，可以通过点击名称切换。</p>
+                
+                <p><b>上移、下移</b>：搜索引擎排序，会决定图标显示的先后顺序。</p>
+                
+                <p>设置：</p>
+                
+                <p><b>名称</b>：简称，中英文都可，比如 <sup>Google</sup> 或者 <sup>谷歌</sup>，设置的图标样式没有自定义时默认会显示名称的第一个字（通过 CSS 实现，如发现在个别网页错误建议反馈以修正）。</p>
+                
+                <p><b>网址</b>：访问网址，怎么访问根据类型决定，有两个参数，<code>%s</code> 会被替换为关键词，<code>%p</code> 会被替换成页码，页码参数主要是给 AJAX 接口使用的，其他可忽略。</p>
+                
+                <p><b>图标 CSS class</b>：通过这个来选择内置图标或者自定义图标，具体看设置页面提示。</p>
+                
+                <p><b>类型</b>：分为 AJAX 数据接入 、iframe 内联、 新标签页打开 三种。</p>
+                
+                <p style="padding-left:3em"><b>新标签页打开</b>：点击搜索图标或链接会在打开一个新标签页，可以添加到划词右键菜单，与 Chrome 自带的划词右键搜索效果一样。</p>
+                
+                <p style="padding-left:3em"><b>iframe 内联</b>：在打开的小窗通过 iframe 内嵌目标网址，优点是配置简单使用成本低，缺点是支持 iframe 而且页面排版能在小窗展示的网站不好找，目前知道的只有百度移动搜索。此外部分网站设置了 content-security-policy 头会导致无法 iframe 加载其他网站网页，我看的有扩展通过 webRequest 将这个参数去掉了让 Chrome 不执行安全策略来解决这个问题，本扩展目前不考虑这样做，因为不建议 iframe 内联。</p>
+                
+                <p style="padding-left:3em"><b>AJAX 数据接入</b>：这是建议使用的方法，此类型会在打开的小窗内插入一个 iframe 文档 来获取和放置接口返回的内容，可以安全无样式污染地显示内容，文档内置 Bootstrap V4 样式，接口返回的 HTML 内容使用其中的样式选择器即可使用其样式。</p>
+                
+                <p style="padding-left:6em"><b>接口 JSON 格式如下</b>：</p>
+                <p style="padding-left:6em"><code>action</code> 字符串，必须有，固定是 <code>hcsearche</code></p>
+                <p style="padding-left:6em"><code>body</code> 字符串，必须有，这就是准备插入的 HTML 代码字符串，如前面所说，HTML 排版 Bootstrap V4 样式即可，无需单独插入样式，当然用其他样式也是可以的。需要注意的是，链接需要设置新标签页打开，如果有图片可能会因为跨域权限原因无法加载，返回 base64 格式图片则无此问题。</p>
+                <p style="padding-left:6em"><code>page_url</code> 字符串，可选，当前结果的页面链接，有的话会在结果下显示一个打开链接，点击可在新标签页中打开此链接</p>
+                <p style="padding-left:6em"><code>next_page</code> 布尔值，可选，判断是否还有下一页，有的话会出现加载下一页链接，点击了会再次请求并把请求结果加到第一次请求结果后面（首次请求时 <code>%p</code> 是 1 ，每点一次下一页请求都会把 <code>%p</code> 加 1 ） </p>
+
+                <p class="mt-5">扩展内置了一个自定义搜索引擎返回处理过的必应搜索结果，以供体验 AJAX 数据接入效果。不过目前处理代码写得不好，搜索结果与页面搜索有一点不同，有待改善。</p>
+                
+                <p class="mt-5">说明暂时写这么多，慢慢完善，过几天会发布一些例子到 Github 项目上。</p>
+                
+                <p>隐私问题：本扩展不收集任何配置信息到服务器，到 <a href="https://chrome.google.com/webstore/detail/fgmknallmmochhfngjmmmcpobelihfhe" target="_blank">Chrome Web Store</a> 下载 crx 转 zip 解压即可审阅代码。请务必通过 Chrome Web Store 下载安装，其他网站下载的文件安全性未知。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_mod fade">
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2019 Namesc</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="setting.html">常规设置</a></li>
+                <li class="list-inline-item"><a href="style.html">自定义样式</a></li>
+                <li class="list-inline-item"><a href="help.html">使用帮助</a></li>
+                <li class="list-inline-item"><a href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a></li>
+            </ul>
+        </footer>
+    </div>
+</div>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- 注意，由于扩展内限制普通 vue 是用不了的，这里用的是 csp 版 -->
+    <script src="/js/vue-1.0.28-csp.min.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script src="common.js"></script>
+    <script src="help.js"></script>
+  
+  </body>
+</html>

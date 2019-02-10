@@ -1,0 +1,173 @@
+/* 
+ * 貌似用自定义元素来实现样式隔离是最好的办法的
+ * #hcSearchePopover 是划词出现的浮标
+ * #hcSearcheModal 是搜索小窗
+ * 分开，以实现可能需要的小窗常驻
+ */
+
+ /* ID + CLASS 提升权重 */
+#hcSearchePopover,
+#hcSearcheModal,
+#hcSearchePopover.hcSearchePopover,
+#hcSearcheModal.hcSearcheModal
+{
+    all: initial;
+    
+    position: absolute;
+    z-index: 2147483647;
+    display: block;
+
+    font-size: 16px;
+    color: #333333;
+    line-height: 26px;
+    
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+#hcSearchePopover.hcSearchePopover-show ,
+#hcSearcheModal.hcSearcheModal-show {
+    transform: scale(1);
+    opacity: 1;
+    
+}
+
+#hcSearcheModal #hcSearcheModalContent {
+    background: #f6f8fa;
+    border: 1px solid #d1d5da;
+    border-radius:3px;
+    color: #586069;
+    display: block;
+    box-shadow: 0 16px 100px 0 rgba(0, 0, 0, 0.2);
+}
+
+#hcSearcheModal #hcSearcheModalBody {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 420px;
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+    border-width:1px 0;
+    border-radius: 3px;
+}
+
+#hcSearcheModal #hcSearcheIframe {
+    overflow:hidden;
+    margin:0;
+    padding:0;
+    height:460px;
+}
+
+#hcSearcheModal #hcSearcheModalHeader {
+    font-size: 13px;
+    line-height: 24px;
+    padding:6px 12px;
+    color: #586069;
+}
+#hcSearcheModal #hcSearcheModalHeader::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+#hcSearcheModal #hcSearcheModalFooter {
+    height:10px;
+    cursor:move;
+    position:relative
+}
+#hcSearcheModal #hcSearcheModalLinks {
+    float:right
+}
+#hcSearcheModal #hcSearcheModalLinks hcsearche-link {
+    display:inline-block;
+    color:#24292e;
+    margin:0 0 0 6px;
+    font-size: 13px;
+    font-weight: normal;
+    text-decoration: none;
+    cursor:pointer;
+    padding: 0 0.5em;
+    border-radius: 0;
+}
+#hcSearcheModal #hcSearcheModalLinks hcsearche-link[data-securrent=true],
+#hcSearcheModal #hcSearcheModalLinks hcsearche-link:hover {
+    background: rgba(27,31,35,.08);
+    color: #444d56;
+}
+#hcSearcheModal #hcSearcheModalLinks hcsearche-link>svg {
+    vertical-align: sub;
+    padding-left: 4px;
+}
+
+#hcSearcheModal #hcSearcheModalLinks #hcSearcheClose:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+#hcSearcheModal #hcSearcheModalLock {
+    float:left;
+    display:block;
+    opacity:0.3;
+    margin-top:3px;
+    width:20px;
+    height:20px;
+    background-size:20px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMSAxMHYtNGMwLTIuNzYtMi4yNC01LTUtNXMtNSAyLjI0LTUgNXYyaC0xdi0yYzAtMy4zMTIgMi42ODktNiA2LTZzNiAyLjY4OSA2IDZ2NGgxMHYxNGgtMTh2LTE0aDd6bTEwIDFoLTE2djEyaDE2di0xMnoiLz48L3N2Zz4=);
+}
+#hcSearcheModal #hcSearcheModalLock.hcSearcheModalLocked {
+    background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik02IDZjMC0zLjMxMSAyLjY4OS02IDYtNnM2IDIuNjg4IDYgNnY0aDN2MTRoLTE4di0xNGgzdi00em0xNCA1aC0xNnYxMmgxNnYtMTJ6bS0xMy01djRoMTB2LTRjMC0yLjc2LTIuMjQtNS01LTVzLTUgMi4yNC01IDV6Ii8+PC9zdmc+)
+}
+
+#hcSearcheModal #hcSearcheNextLink {
+    position: absolute;
+    top: -40px;
+    right: 28px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    color:#6c757d;
+    cursor: pointer;
+    background-size:16px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-color:#f6f8fa;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVQ4T+2TTUoDQRCF32twTpCLuFKYEaYWguvoGQS3nsFjeAYXEoIQ6JqF1wi6Sly48wBPGpzQtpNJyMJVetm8+urvFTHyYoy3IYS3tm0X22QcA7j7A4B3M3s8Av5rBu4+MbPPfuJDWyg1mzVKCu6+InljZq8JUgK6rruTNDWzyz7JLx/EGM8APJO8TpAc8BN8D+DCzD4GAekzhwC4SkYieSLpT3DSDzoxQUjOJM1DCEHSeZl5awXZABtJLyS/AJzmZee23nULTVVV67qulwfdwtihbVpw9wjA9hGXGklP3z4VgPj5LnZPAAAAAElFTkSuQmCC);
+    border-radius:3px;
+}
+
+#hcSearcheModal #hcSearcheNextLink:hover {
+    background-color: #e9ecef;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVQ4T2NkwAMKCwvT/v37d3/ixIm7cSljxGdAQUFBCwMDw4MJEybMGTWAXmFQXFws0tvb+wYW4thiAV0NPBobGhqY3r9//4yBgSFk4sSJR0CGoBtQUFCQycDAEDRhwgRXmCUo6SA/P9+ckZFx0////4NBhiAbANVc9OvXL9tp06a9wGoASBDZEEZGRg9QQmJgYGBlYGDA0AxSjzUlQg3Z8v///20MDAxMjIyMFug243QBTCI/P9+GgYFhBwMDw+ffv38bIjsbOVnjzQvFxcU2TExMz7u7u++SlRfwZTS4F/Lz8/cxMjI6EqMYi5p1AJbtgw7fjyoMAAAAAElFTkSuQmCC);
+    color: #444d56;
+}
+
+#hcSearcheModal #hcSearcheNextLink.hcSearcheNextLinkLoading {
+    background-color: #e9ecef;
+    background-image: none;
+}
+
+#hcSearcheModal #hcSearcheNextLink.hcSearcheNextLinkLoading:after {
+    content: " ";
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 9px 0 0 9px;
+    border-radius: 50%;
+    border: 1px solid #24292e;
+    border-color: #24292e transparent #24292e transparent;
+    animation: hcSearcheNextLinkLoading 1.2s linear infinite;
+}
+
+@keyframes hcSearcheNextLinkLoading {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(720deg);
+    }
+}

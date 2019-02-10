@@ -1,0 +1,30 @@
+
+.container {
+    max-width:800px
+}
+
+#alerts {
+    position: fixed;
+    z-index: 2147483647;
+    top: 25px;
+    width: 100%;
+    text-align: center
+}
+
+#alerts .alert {
+    display: inline-block;
+}
+#alerts .alert-dark {
+    background:#f1f8ff;
+    border-color:#c8e1ff;
+    color: #586069;
+}
+
+#alerts .alert .close {
+    margin-left: 1em
+}
+
+.search_icon_example {
+    margin-right: 8px;
+    color:#777
+}

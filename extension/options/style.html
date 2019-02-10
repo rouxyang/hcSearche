@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="options.css">
+
+    <title>样式设置</title>
+  </head>
+  
+<body class="bg-light">
+
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/options/setting.html"><img src="/images/icon32.png" alt="" width="32" height="32"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/options/setting.html">划词小窗搜索</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="btn btn-outline-primary my-2 my-sm-0" href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a>
+    </div>
+  </div>
+</nav>
+  
+<div class="container">
+
+    <div class="mb-5 text-center page_mod fade">
+        <h4 class="text-muted">样式设置</h4>
+    </div>
+    
+</div>
+
+<div id="styleapp" class="container">
+
+    <style id="hcSearchePopoverCustomStyle">{{ custom_style }}</style>
+
+    <div class="page_mod fade">
+    
+        <div class="alert alert-danger" role="alert">
+            注意：目前此设置属于试验性质，后期更新可能会变更CSS选择器等，请更新时留意。自定义CSS代码总长度不能超过8192字节，务必将图标修改至 16x16px 并压缩后再 base64 编码使用。
+        </div>
+
+        <p class="text-muted mt-3">修改窗口大小</p>
+        <blockquote class="ml-3">
+            <p class="text-muted mt-3">
+                <code>#hcSearcheModal #hcSearcheModalBody {width: 420px;}</code><br>
+                <code>#hcSearcheModal #hcSearcheIframe {height: 460px;}</code>
+            </p>
+        </blockquote>
+        
+        <p class="text-muted mt-3">自定义图标样式例子</p>
+        <blockquote class="ml-3">
+            <p class="text-muted mt-3">如果你设置的图标 CSS class 是 google 那么应该这么写：</p>
+            <p class="text-muted mt-3"><code>#hcSearcheIcons hcsearche-icon[data-seclass=<b class="text-success">google</b>] { font-size: 0; background-image:url('data:....') }</code></p>
+            <p class="text-muted mt-3">没错，名义上是 class 实际选择器不是，需要像上面这么写。此外，默认没有图标是显示搜索引擎名称第一个字，所以设置图标时需要将字体大小设为0，否则会文字和图标重叠。而且图标通过 background-image 设置，请将 16x16px 图标 base64 编码后填入，不要使用网址，否则可能因为防盗链等原因加载失败。</p>
+        </blockquote>
+        
+        
+        <p class="text-muted mt-5">图标预览 <small v-if="custom_style_on === false">（<span class="text-danger">当前预览不会在前端生效，因为你没有启用自定义代码，启用设置在本页下方</span>）</small></p>
+        <div id="hcSearcheIcons">
+            <template 
+                v-for="(index, engine) in searchEngines" 
+                v-bind:data-position="engine.position"
+                v-bind:data-index="index">
+                
+                <hcsearche-icon v-bind:data-seclass="engine.icon_class">{{ engine.name }}</hcsearche-icon>
+                
+            </template>
+        </div>
+
+        <p class="text-muted mt-4">样式设置 <span class="text-muted small">（图标效果会实时预览，但代码需要手动保存）</span></p>
+        <form id="styleform">
+            <div class="form-group">
+                <label for="customStyle">CSS 代码</label>
+                <textarea class="form-control" id="customStyle" rows="3" name="custom_style" v-model="custom_style"></textarea>
+            </div>
+            <p><button type="submit" class="btn btn-primary">保存样式</button></p>
+            <p class="form-text text-muted">这里填写的样式会插入到访问的网页中，请严格使用指定选择器指定样式。</p>
+            <p class="form-text text-muted">不知道怎么开始？把这段代码复制到输入框试试（留意预览图标的前后变化）：</p>
+            <p class="form-text text-muted"><code>#hcSearcheIcons hcsearche-icon {border-color: red; background-repeat: repeat;}</code></p>
+        </form>
+        
+        <p class="text-muted mt-5">开关</p>
+        <div class="custom-control custom-switch">
+            <p>
+                <input type="checkbox" class="custom-control-input form-control-lg" id="custom_style_on" v-model="custom_style_on">
+                <label class="custom-control-label" for="custom_style_on">启用自定义代码</label>
+                <span class="form-text text-muted">如果填写了代码，不想生效但又不想删除，那么就在这里关闭了。</span>
+            </p>
+        </div>
+        
+    </div>
+    <div class="page_mod fade">
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2019 Namesc</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="setting.html">常规设置</a></li>
+                <li class="list-inline-item"><a href="style.html">自定义样式</a></li>
+                <li class="list-inline-item"><a href="help.html">使用帮助</a></li>
+                <li class="list-inline-item"><a href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a></li>
+            </ul>
+        </footer>
+    </div>
+</div>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- 注意，由于扩展内限制普通 vue 是用不了的，这里用的是 csp 版 -->
+    <script src="/js/vue-1.0.28-csp.min.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script src="common.js"></script>
+    <script src="style.js"></script>
+  
+  </body>
+</html>

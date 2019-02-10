@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/popup.css">
+
+    <link rel="stylesheet" href="options.css">
+    
+    <title>设置选项</title>
+  </head>
+  
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/options/setting.html"><img src="/images/icon32.png" alt="" width="32" height="32"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/options/setting.html">划词小窗搜索</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="btn btn-outline-primary my-2 my-sm-0" href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+    <div class="mb-5 text-center page_mod fade">
+        <h4 class="text-muted">常规设置</h4>
+    </div>
+    
+</div>
+
+<div id="pageapp" class="container">
+
+    <div class="page_mod fade">
+        <p class="text-muted">悬浮搜索图标</p>
+        <div class="card">
+            <div class="card-body">
+                <div class="custom-control custom-switch">
+                    <p class="mb-4">
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="show_float_icon" v-model="show_float_icon">
+                        <label class="custom-control-label" for="show_float_icon">划词自动出现搜索图标</label>
+                        <span class="form-text text-muted small">
+                        划词后自动在鼠标右上角显示搜索图标
+                        </span>
+                    </p>
+                    <p  class="mb-4" v-if="show_float_icon">
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="show_on_hover" v-model="show_on_hover">
+                        <label class="custom-control-label" for="show_on_hover">鼠标移至图标上方自动打开搜索</label>
+                        <span class="form-text text-muted small">
+                        无需点击，但容易误触
+                        </span>
+                    </p>
+                    <hr>
+                    <p class="small text-muted">每次划词都出现图标太耀眼？试试这个设置。</p>
+                    <p>
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="show_contextmenu_icon" v-model="show_contextmenu_icon">
+                        <label class="custom-control-label" for="show_contextmenu_icon">划词后点击右键出现搜索图标</label>
+                        <span class="form-text text-muted small">
+                            打开本设置后，即使打开自动出现图标也不会再自动出现
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page_mod fade">
+        <p class="text-muted mt-3">右键菜单</p>
+        <div class="card">
+            <div class="card-body">
+                <div class="custom-control custom-switch">
+                    <p>
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="in_the_menu" v-model="in_the_menu">
+                        <label class="custom-control-label" for="in_the_menu">添加搜索引擎到右键菜单</label>
+                        <span class="form-text text-muted">
+                            将在新标签页打开的搜索引擎添加到划词右键菜单
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page_mod fade">
+        <p class="text-muted mt-3">搜索窗口</p>
+        <div class="card">
+            <div class="card-body">
+                <div class="custom-control custom-switch">
+                    <p>
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="fixed_modal" v-model="fixed_modal">
+                        <label class="custom-control-label" for="fixed_modal">基于浏览器窗口定位</label>
+                        <span class="form-text text-muted">
+                            打开后搜索窗口可固定在浏览器窗口特定位置，不受页面滚动影响
+                        </span>
+                    </p>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    <p>
+                        <input type="checkbox" class="custom-control-input form-control-lg" id="auto_close" v-model="auto_close">
+                        <label class="custom-control-label" for="auto_close">自动关闭搜索窗口</label>
+                        <span class="form-text text-muted">
+                            打开后点击网页任意位置窗口就会自动关闭，否则只有手动点击关闭才会关闭
+                        </span>
+                    </p>
+                </div>
+
+                <a href="/options/style.html">自定义样式</a> <span class="small text-muted">包括窗口大小以及图标样式</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page_mod fade">     
+        <div class="text-muted mt-5 mb-3 clearfix">
+            搜索引擎
+            <a href="#" id="resetCustomEngine" class="btn btn-link btn-sm text-muted small" title="恢复默认设置">RESET</a>
+            <a href="#" id="addCustomEngine" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#customEngineModal">添加搜索引擎</a>
+        </div>
+        <div id="hcSearcheIcons">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">名称 <span class="small text-muted">（简称）</span></th>
+                    <th scope="col">网址 <span class="small text-muted">（用“%s”代替搜索字词）</span></th>
+                    <th scope="col">设置</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="search_engine"
+                    v-for="(index, engine) in sortByPosition(searchEngines)" 
+                    v-bind:data-position="engine.position"
+                    v-bind:data-seindex="index">
+                    <th scope="row">{{ index + 1 }}</th>
+                    <td>
+                        <div class="mb-2">{{ engine.name }}</div>
+                        <span class="small text-muted"><hcsearche-icon v-bind:data-seclass="engine.icon_class">{{ engine.name }}</hcsearche-icon></span>
+                    </td>
+                    <td>
+                        <div class="mb-2" v-bind:title="engine.url">
+                            <div style="word-break:break-word;max-width:360px;">
+                                <span v-if="engine.url.includes('-1256936457.ap-guangzhou.apigateway.myqcloud.com')">
+                                    <span class="text-success">使用扩展内置测试搜索接口</span>
+                                </span>
+                                <span v-else>
+                                    {{ engine.url }}
+                                </span>
+                            </div>
+                        </div>
+                        <span class="small text-muted">
+                            类型：{{ engine.type }}
+                        <span>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-switch">
+                            <div class="mb-2">
+                                <input type="checkbox" class="custom-control-input form-control-lg" v-bind:id="'show_icon_se'+ engine.position" v-model="engine.show_icon">
+                                <label class="custom-control-label" v-bind:for="'show_icon_se'+ engine.position">悬浮搜索图标</label>
+                            </div>
+                        </div>
+                        <div class="small">
+                            <a href="#" class="moveSeUp">上移</a> <span class="small text-muted"> / </span> 
+                            <a href="#" class="moveSeDown">下移</a> <span class="small text-muted"> / </span> 
+                            <a href="#" v-bind:data-seindex="index" data-toggle="modal" data-target="#customEngineModal">编辑</a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        </div>
+        <p class="text-muted small text-center mt-5">搜索图标相关设置修改后不会在已打开的页面立即生效，需要刷新或者新打开页面才有效。</p>
+    </div>
+
+    <div class="page_mod fade">
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2019 Namesc</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="setting.html">常规设置</a></li>
+                <li class="list-inline-item"><a href="style.html">自定义样式</a></li>
+                <li class="list-inline-item"><a href="help.html">使用帮助</a></li>
+                <li class="list-inline-item"><a href="https://github.com/hellonamesc/hcSearche" target="_blank">Github</a></li>
+            </ul>
+        </footer>
+    </div>
+
+</div> <!-- pageapp -->
+    
+    
+<div class="modal fade" id="customEngineModal" tabindex="-1" role="dialog" aria-labelledby="customEngineModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div id="formapp">
+        <form id="customEngineForm">
+            <input type="hidden" name="index" v-model="index">
+      <div class="modal-header">
+        <h5 class="modal-title" id="customEngineModalLabel">自定义搜索引擎</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <label for="engineName" class="col-form-label">名称 <span class="small text-muted">（尽量短但意义明确，如 Google）</span></label>
+            <input type="text" class="form-control" id="engineName" v-model="name" required>
+          </div>
+          <div class="form-group">
+            <label for="engineUrl" class="col-form-label">网址 <span class="small text-muted">（用“%s”代替搜索字词，用“%p”代替页码）</span></label>
+            <input type="text" class="form-control" id="engineUrl" v-model="url" required>
+          </div>
+          <div class="form-group hcSearcheIconsExample" id="hcSearcheIcons">
+            <div><label for="engineIcon" class="col-form-label">图标 CSS class <span class="small text-muted">（ 默认 <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="search">search</hcsearche-icon> search</a>，你可以通过自定义 CSS 设置）</span></label></div>
+            
+             <p><input type="text" class="form-control" id="engineIcon" v-model="icon_class" required></p>
+             
+            <span class="small text-muted">
+                内置图标 CSS class 可选：<br>
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="google">google</hcsearche-icon> google</a>
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="bing">bing</hcsearche-icon> bing</a>
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="duckduckgo">duckduckgo</hcsearche-icon> duckduckgo</a>
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="baidu">baidu</hcsearche-icon> baidu</a>
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="so360">so360</hcsearche-icon> so360</a> 
+                <a href="#" class="search_icon_example"><hcsearche-icon data-seclass="sogou">sogou</hcsearche-icon> sogou</a>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">类型</label>
+            <div class="mt-2 mb-3">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="engineRypeAjax" name="engineType" class="custom-control-input" value="ajax" v-model="type">
+                    <label class="custom-control-label" for="engineRypeAjax">AJAX 数据接入</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="engineTypeIframe" name="engineType" class="custom-control-input" value="iframe" v-model="type">
+                    <label class="custom-control-label" for="engineTypeIframe">iframe 内联</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="engineTypeNewtab" name="engineType" class="custom-control-input" value="newtab" v-model="type">
+                    <label class="custom-control-label" for="engineTypeNewtab">新标签页打开</label>
+                </div>
+            </div>
+            <small class="form-text text-muted">不清楚类型的区别是什么？<a href="/options/help.html" target="_blank">点此查看自定义搜索引擎说明</a></small>
+          </div>
+        
+        <button type="button" class="btn btn-sm btn-link" id="deleteEngine">删除此搜索引擎</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-primary">保存设置</button>
+      </div>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- 注意，由于扩展内限制普通 vue 是用不了的，这里用的是 csp 版 -->
+    <script src="/js/vue-1.0.28-csp.min.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script src="common.js"></script>
+    <script src="setting.js"></script>
+  
+  </body>
+</html>
