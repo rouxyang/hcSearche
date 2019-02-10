@@ -553,9 +553,8 @@ let readyStateCheckInterval = setInterval(function () {
             document.addEventListener('mouseup', autoRemoveTemplate);
             document.addEventListener('contextmenu', mouseUp);
         } else {
-            
+            document.addEventListener('mouseup', mouseUp);
         }
-        document.addEventListener('mouseup', mouseUp);
 
     }
 }, 10);
